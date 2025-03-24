@@ -1,17 +1,22 @@
 #include <windows.h>
-#include "pch.h"
-// i didnt fix the correct call back
-// dll U can modfiy anything u want!
-extern "C" __declspec(dllexport) LRESULT CALLBACK callback(int nCode, WPARAM wParam, LPARAM lParam) {
+#include <iostream>
 
-    MessageBoxA(NULL, "[+] Callback function triggered", "DLL Hook", MB_OK);
 
-    return CallNextHookEx(NULL, nCode, wParam, lParam);
+DWORD WINAPI uhminject(LPVOID param) {
+    MessageBoxA(NULL, "Injected", "Module", MB_OK | MB_ICONINFORMATION);
+    return 0;
 }
 
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved) {
-    if (reason == DLL_PROCESS_ATTACH) {
-        MessageBoxA(NULL, "[+] DLL Injected!", "DLL Injection", MB_OK);
+
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) {
+    switch (ul_reason_for_call) {
+    case DLL_PROCESS_ATTACH:
+        CreateThread(NULL, 0, uhminject, NULL, 0, NULL);
+        break;
+    case DLL_THREAD_ATTACH:
+    case DLL_THREAD_DETACH:
+    case DLL_PROCESS_DETACH:
+        break;
     }
     return TRUE;
 }
