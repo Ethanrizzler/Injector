@@ -1,6 +1,6 @@
 # Injector c++
 - Dll Name Must Be "Module"
-**Uses**
+- **Uses**
 - WinVerifyTrust
 - CreateRemoteThread
 
