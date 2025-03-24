@@ -1,7 +1,7 @@
 
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
-
+// its just when yall wanna use these in header file i defined them in the injector code becuase i had issues with this
 static const unsigned int PROCESS_ALL_ACCESS = 0x1F0FFF;
 static const unsigned int TH32CS_SNAPPROCESS = 0x00000002;
 static const unsigned int PAGE_EXECUTE_READWRITE = 0x40;
