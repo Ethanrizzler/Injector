@@ -113,12 +113,7 @@ int main()
         return -1;
     }
 
-    HANDLE remoteThread = CreateRemoteThread(processHandle, NULL, 0, (LPTHREAD_START_ROUTINE)loadLibraryAddr, allocatedMem, 0, NULL);
-    if (!remoteThread)
-    {
-        std::cout << "Failed to create remote thread." << std::endl;
-        return -1;
-    }
+
 
     std::cout << "Module Attached Successfully." << std::endl;
     
